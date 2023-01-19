@@ -19,7 +19,8 @@ class ArayTests: XCTestCase {
         XCTAssertNotNil(value)
         XCTAssertEqual(value, 2)
     }
-    func testGetValueOutRange() throws{ // тест на неправильный индекс
+    
+    func testGetValueOutRange() throws { // тест на неправильный индекс
     //Given
         let array = [1, 1, 2, 3, 5]
     // When

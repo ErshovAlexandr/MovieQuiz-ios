@@ -9,7 +9,7 @@ import XCTest
 
 @testable import MovieQuiz
 
-final class MovieQuizViewControllerProtocolMock: MovieQuizViewControllerProtocol {
+final class MovieQuizViewControllerMock: MovieQuizViewControllerProtocol {
     func imageBorderOff() {
         
     }
@@ -41,7 +41,7 @@ final class MovieQuizViewControllerProtocolMock: MovieQuizViewControllerProtocol
 
 final class MovieQuizPresenterTests: XCTestCase {
     func testPresenterConvertModel() throws {
-        let viewControllerMock = MovieQuizViewControllerProtocolMock()
+        let viewControllerMock = MovieQuizViewControllerMock()
         let sut = MovieQuizPresenter(viewController: viewControllerMock)
         
         let emptyData = Data()

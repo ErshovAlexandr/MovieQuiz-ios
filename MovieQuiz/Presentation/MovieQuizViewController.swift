@@ -2,7 +2,7 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var counterLabel: UILabel!
     @IBOutlet weak private var textLabel: UILabel!
     @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
@@ -15,7 +15,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
         presenter.yesButtonClicked()
     }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +32,20 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     // Отоброжение результата прохождения квиза
     func show(quiz result: QuizResultsViewModel) {
-        _ = presenter.makeResultsMessage()
+        let message = presenter.makeResultsMessage()
         let alertModel = AlertModel(title: result.title,
-                                    message: result.text,
+                                    message: message, // result.text,
                                     buttonText: result.buttonText) {[weak self]_ in
             guard self != nil else {return}
             self?.presenter.restartGame()
         }
-        
-        
         self.alertPresenter?.show(results: alertModel)
-        
         self.presenter.resetQuestionIndex()
         presenter.correctAnswers = 0
         self.presenter.questionFactory?.requestNextQuestion()
-        
-        
     }
     
+    // Индикатор загрузки
     func showLoadingIndicator() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -77,8 +72,8 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
     }
+    
     func imageBorderOff() {
-        sleep(1)
         imageView.layer.borderWidth = 0
     }
 }
