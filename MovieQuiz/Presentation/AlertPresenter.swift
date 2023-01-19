@@ -5,7 +5,6 @@
 //  Created by Александр Ершов on 03.12.2022.
 //
 
-
 import UIKit
 
 struct AlertPresenter: AlertPresenterProtocol{
@@ -24,7 +23,6 @@ struct AlertPresenter: AlertPresenterProtocol{
         
         alert.addAction(action)
         viewController?.present(alert, animated: true, completion: nil)
-        
     }
 }
 
