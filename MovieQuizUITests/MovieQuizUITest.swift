@@ -29,10 +29,10 @@ final class MovieQuizUITest: XCTestCase {
         sleep(3)
         let indexLabel = app.staticTexts["Index"]
         let firstPoster = app.images["Poster"] // Находим первоначальный постер
-
+        
         app.buttons["Yes"].tap() // Находим кнопку Да и нажимаем на нее
         
-                let secondPoster = app.images["Poster"] // Повтор постера
+        let secondPoster = app.images["Poster"] // Повтор постера
         sleep (3)
         XCTAssertFalse(firstPoster==secondPoster)
         sleep (3)
@@ -60,34 +60,34 @@ final class MovieQuizUITest: XCTestCase {
             app.buttons["Yes"].tap()
             sleep(3)
         }
-         
-         sleep(2)
-         
-         let alert = app.alerts["AlertResult"]
-         
-         XCTAssertTrue(app.alerts["AlertResult"].exists)
-         XCTAssertTrue(alert.label == "Этот раунд окончен!")
-         XCTAssertTrue(alert.buttons.firstMatch.label == "Сыграть ещё раз")
-     }
-
-     func testAlertDismiss() {
-         for _ in 1...10 {
-             app.buttons["No"].tap()
-             sleep(3)
-         }
-         
-         sleep(2)
-         
-         let alert = app.alerts["AlertResult"]
-         alert.buttons.firstMatch.tap()
-         
-         sleep(2)
-         
-         let indexLabel = app.staticTexts["Index"]
-         
-         XCTAssertFalse(app.alerts["AlertResult"].exists)
-         XCTAssertTrue(indexLabel.label == "1/10")
-     }
+        
+        sleep(2)
+        
+        let alert = app.alerts["AlertResult"]
+        
+        XCTAssertTrue(app.alerts["AlertResult"].exists)
+        XCTAssertTrue(alert.label == "Этот раунд окончен!")
+        XCTAssertTrue(alert.buttons.firstMatch.label == "Сыграть ещё раз")
+    }
+    
+    func testAlertDismiss() {
+        for _ in 1...10 {
+            app.buttons["No"].tap()
+            sleep(3)
+        }
+        
+        sleep(2)
+        
+        let alert = app.alerts["AlertResult"]
+        alert.buttons.firstMatch.tap()
+        
+        sleep(2)
+        
+        let indexLabel = app.staticTexts["Index"]
+        
+        XCTAssertFalse(app.alerts["AlertResult"].exists)
+        XCTAssertTrue(indexLabel.label == "1/10")
+    }
 }
 
 
